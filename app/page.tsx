@@ -30,7 +30,7 @@ export default function LandingPage() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#2D7A54] opacity-60" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#2D7A54]" />
             </span>
-            Launching soon · Lagos
+            Launching soon
           </span>
         </header>
 
