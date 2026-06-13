@@ -17,11 +17,12 @@ export default function LandingPage() {
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-6 py-6 lg:px-10 lg:py-7">
         {/* Top bar */}
         <header className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-[#1A1A1A] text-white text-base font-bold">
+          <a href="/" className="flex items-center gap-1">
+            <img src="/chop2shapelogo.png" alt="Logo" width={30} height={30}/>
+            {/* <span className="grid h-8 w-8 place-items-center rounded-full bg-[#1A1A1A] text-white text-base font-bold">
               C
-            </span>
-            <span className="text-lg font-bold tracking-tight">
+            </span> */}
+            <span className="text-lg font-bold tracking-tight text-green-900/95">
               Chop2Shape
             </span>
           </a>
@@ -72,9 +73,13 @@ export default function LandingPage() {
                   />
                 ))}
               </div>
-              <p className="text-sm text-[#666666]">
+              {/* <p className="text-sm text-[#666666]">
                 <span className="font-bold text-[#1A1A1A]">1,200+</span>{" "}
                 already on the list
+              </p> */}
+              <p className="text-sm text-[#666666]">
+                Join the <span className="font-bold text-[#1A1A1A]">early access</span> community
+                {/* <span className="font-bold text-[#1A1A1A]">114</span> already on the list */}
               </p>
             </div>
           </div>

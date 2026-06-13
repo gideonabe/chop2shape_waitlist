@@ -1,12 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, ArrowRight, Loader2 } from "lucide-react";
+
+const LOADING_MESSAGES = [
+  "Securing your spot...",
+  "Warming up the stove...",
+  "Prepping the pantry...",
+  "Sending welcome email...",
+];
 
 export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loadingIndex, setLoadingIndex] = useState(0);
+
+
+  // Cycle through loading messages when status is "loading"
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (status === "loading") {
+      setLoadingIndex(0); // Reset to first message
+      interval = setInterval(() => {
+        setLoadingIndex((prev) => (prev + 1) % LOADING_MESSAGES.length);
+      }, 800); // Change text every 800ms
+    }
+    return () => clearInterval(interval);
+  }, [status]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,7 +96,10 @@ export function WaitlistForm() {
           className="inline-flex w-full sm:w-auto justify-center items-center gap-1.5 rounded-xl sm:rounded-full bg-[#1A1A1A] px-6 py-3.5 sm:py-3 text-sm font-semibold text-white transition-all hover:bg-[#2D7A54] active:scale-95 disabled:opacity-70 disabled:pointer-events-none whitespace-nowrap"
         >
           {status === "loading" ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <>
+              <Loader2 className="h-4 w-4 animate-spin text-[#2D7A54]" />
+              <span className="animate-pulse">{LOADING_MESSAGES[loadingIndex]}</span>
+            </>
           ) : (
             <>
               <span>Reserve my spot</span>
