@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 // Load the sans-serif font (Inter) for body text and UI elements
@@ -70,6 +71,7 @@ export default function RootLayout({
         className="bg-[#FAF9F6] text-[#1A1A1A] font-sans antialiased selection:bg-[#2D7A54]/20 selection:text-[#1A1A1A]"
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
