@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import nodemailer from 'nodemailer';
-import {render} from '@react-email/render';
-import { WaitlistWelcomeEmail } from '@/emails/WaitlistWelcome';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -43,10 +41,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
     }
 
-
-    // Render the React Email to an HTML string
-    // const emailHtml = await render(WaitlistWelcomeEmail({email}))
-
     // Send the Welcome Email
     const mailOptions = {
       from: `"Chop2Shape" <${process.env.EMAIL_USER}>`,
@@ -70,7 +64,6 @@ export async function POST(request: Request) {
           <p><strong>The Chop2Shape Team</strong></p>
         </div>
       `,
-      // html: emailHtml,
     };
 
     await transporter.sendMail(mailOptions);
